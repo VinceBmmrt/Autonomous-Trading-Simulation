@@ -9,5 +9,6 @@ dependencies = [
     "mcp[cli]>=1.13.1",
     "openai-agents>=0.2.9",
     "polygon-api-client>=1.15.3",
+    "pyright>=1.1.404",
     "python-dotenv>=1.1.1",
 ]
