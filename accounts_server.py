@@ -22,7 +22,7 @@ async def get_holdings(name: str) -> dict[str, int]:
     return Account.get(name).holdings
 
 @mcp.tool()
-async def buy_shares(name: str, symbol: str, quantity: int, rationale: str) -> float:
+async def buy_shares(name: str, symbol: str, quantity: int, rationale: str) -> str:
     """Buy shares of a stock.
 
     Args:
@@ -31,11 +31,12 @@ async def buy_shares(name: str, symbol: str, quantity: int, rationale: str) -> f
         quantity: The quantity of shares to buy
         rationale: The rationale for the purchase and fit with the account's strategy
     """
-    return Account.get(name).buy_shares(symbol, quantity, rationale)
+    result = Account.get(name).buy_shares(symbol, quantity, rationale)
+    return result
 
 
 @mcp.tool()
-async def sell_shares(name: str, symbol: str, quantity: int, rationale: str) -> float:
+async def sell_shares(name: str, symbol: str, quantity: int, rationale: str) -> str:
     """Sell shares of a stock.
 
     Args:
@@ -44,7 +45,8 @@ async def sell_shares(name: str, symbol: str, quantity: int, rationale: str) -> 
         quantity: The quantity of shares to sell
         rationale: The rationale for the sale and fit with the account's strategy
     """
-    return Account.get(name).sell_shares(symbol, quantity, rationale)
+    result = Account.get(name).sell_shares(symbol, quantity, rationale)
+    return result
 
 @mcp.tool()
 async def change_strategy(name: str, strategy: str) -> str:
