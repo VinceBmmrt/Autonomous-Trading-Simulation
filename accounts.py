@@ -144,7 +144,8 @@ class Account(BaseModel):
 
     def get_profit_loss(self):
         """ Report the user's profit or loss at any point in time. """
-        return self.calculate_profit_loss()
+        portfolio_value = self.calculate_portfolio_value()
+        return self.calculate_profit_loss(portfolio_value)
 
     def list_transactions(self):
         """ List all transactions made by the user. """
@@ -176,10 +177,10 @@ class Account(BaseModel):
 
 # Example of usage:
 if __name__ == "__main__":
-    account = Account("John Doe")
+    account = Account.get("John Doe")
     account.deposit(1000)
-    account.buy_shares("AAPL", 5)
-    account.sell_shares("AAPL", 2)
+    account.buy_shares("AAPL", 5, "Investing in Apple stock")
+    account.sell_shares("AAPL", 2, "Taking profits")
     print(f"Current Holdings: {account.get_holdings()}")
     print(f"Total Portfolio Value: {account.calculate_portfolio_value()}")
     print(f"Profit/Loss: {account.get_profit_loss()}")
