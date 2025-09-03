@@ -58,7 +58,7 @@ async def get_accounts_tools_openai():
         schema = {**tool.inputSchema, "additionalProperties": False}
         openai_tool = FunctionTool(
             name=tool.name,
-            description=tool.description,
+            description=tool.description or "",
             params_json_schema=schema,
             on_invoke_tool=lambda ctx, args, toolname=tool.name: call_accounts_tool(toolname, json.loads(args))
                 
