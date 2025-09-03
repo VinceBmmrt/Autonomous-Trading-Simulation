@@ -19,7 +19,7 @@ is_realtime_polygon = polygon_plan == "realtime"
 
 def is_market_open() -> bool:
     client = RESTClient(polygon_api_key)
-    market_status = client.get_market_status()  # type: ignore
+    market_status = client.get_market_status()
     return getattr(market_status, "market", None) == "open"
 
 
