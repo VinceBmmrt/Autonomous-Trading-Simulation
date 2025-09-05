@@ -1,3 +1,4 @@
+from typing import Any
 from polygon import RESTClient
 from dotenv import load_dotenv
 import os
@@ -24,14 +25,19 @@ def is_market_open() -> bool:
 
 
 def get_all_share_prices_polygon_eod() -> dict[str, float]:
-    """With much thanks to student Reema R. for fixing the timezone issue with this!"""
+    """Fix timezone issue and get end-of-day prices."""
     client = RESTClient(polygon_api_key)
 
-    probe = client.get_previous_close_agg("SPY")[0]
+    probe: Any = client.get_previous_close_agg("SPY")
+    if isinstance(probe, list):
+        probe = probe[0]  
+    elif not hasattr(probe, "timestamp"):
+        raise ValueError("Unexpected response from Polygon API for previous close agg")
+
     last_close = datetime.fromtimestamp(probe.timestamp / 1000, tz=timezone.utc).date()
 
-    results = client.get_grouped_daily_aggs(last_close, adjusted=True, include_otc=False)
-    return {result.ticker: result.close for result in results}
+    results: Any = client.get_grouped_daily_aggs(last_close, adjusted=True, include_otc=False)
+    return {getattr(result, "ticker", ""): getattr(result, "close", 0.0) for result in results}
 
 
 @lru_cache(maxsize=2)
@@ -49,10 +55,12 @@ def get_share_price_polygon_eod(symbol) -> float:
     return market_data.get(symbol, 0.0)
 
 
-def get_share_price_polygon_min(symbol) -> float:
+def get_share_price_polygon_min(symbol: str) -> float:
     client = RESTClient(polygon_api_key)
-    result = client.get_snapshot_ticker("stocks", symbol)
-    return result.min.close or result.prev_day.close
+    result: Any = client.get_snapshot_ticker("stocks", symbol)
+    min_close = getattr(getattr(result, "min", None), "close", None)
+    prev_close = getattr(getattr(result, "prev_day", None), "close", None)
+    return float(min_close or prev_close or 0.0)
 
 
 def get_share_price_polygon(symbol) -> float:
