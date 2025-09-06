@@ -15,8 +15,18 @@ from templates import (
     research_tool,
 )
 from mcp_params import trader_mcp_server_params, researcher_mcp_server_params
+import logging
+from contextlib import AsyncExitStack
+from typing import TypedDict, List, Dict
+
 
 load_dotenv(override=True)
+
+# class MCPServerStdioParamsDict(TypedDict):
+#     command: str
+#     args: List[str]
+#     env: Dict[str, str]
+
 
 deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
 google_api_key = os.getenv("GOOGLE_API_KEY")
@@ -102,16 +112,16 @@ class Trader:
 
     async def run_with_mcp_servers(self):
         async with AsyncExitStack() as stack:
-            trader_mcp_servers = [
+            trader_mcp_servers  = [
                 await stack.enter_async_context(
-                    MCPServerStdio(params, client_session_timeout_seconds=120)
+                    MCPServerStdio(params, client_session_timeout_seconds=120) # type: ignore
                 )
                 for params in trader_mcp_server_params
             ]
             async with AsyncExitStack() as stack:
                 researcher_mcp_servers = [
                     await stack.enter_async_context(
-                        MCPServerStdio(params, client_session_timeout_seconds=120)
+                        MCPServerStdio(params, client_session_timeout_seconds=120) # type: ignore
                     )
                     for params in researcher_mcp_server_params(self.name)
                 ]
