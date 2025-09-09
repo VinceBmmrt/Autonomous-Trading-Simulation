@@ -1,3 +1,4 @@
+
 # Autonomous AI Trading Simulation
 
 <div align="center">
@@ -163,6 +164,3 @@ After cloning the repository and navigating to the root folder:
 - To install all dependencies: "uv sync"  
 - To launch the front-end application: "uv run app.py"  
 - To launch the trading floor script: "uv run trading_floor.py"
-
-
-
