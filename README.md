@@ -34,7 +34,12 @@ Chaque agent démarre avec une stratégie initiale inspirée de son modèle, mai
 - **Évolution autonome des stratégies :** les agents peuvent changer de stratégie et rééquilibrer leurs portefeuilles  
 - **Notifications push :** mises à jour envoyées après chaque action de trading  
 - **Logs et traçage :** toutes les actions et transactions sont suivies avec LogTracer  
-- **Multi-modèles IA :** support de GPT, DeepSeek, Gemini et Grok pour la prise de décision  
+- **Multi-modèles IA :** support de GPT, DeepSeek, Gemini et Grok pour la prise de décision
+
+### 🎥 Demo
+
+Une démonstration du projet est disponible ici:  
+[📂 Watch the demo](https://drive.google.com/file/d/17wud_t8fTiFNZBx5Hn02OoVFxCJR-yGR/view)
 
 ### ⚠️ Avertissements
 - **Projet expérimental** – Ne pas utiliser pour des décisions de trading réelles  
@@ -80,6 +85,11 @@ Each agent starts with an initial strategy inspired by their namesake but has th
 - **Push notifications:** updates sent after trading actions.  
 - **Logging & tracing:** all actions and trades are tracked using LogTracer.  
 - **Multiple AI models:** supports GPT, DeepSeek, Gemini, and Grok models for decision-making.
+
+### 🎥 Demo
+
+A demonstration of the project is available here:  
+[📂 Watch the demo](https://drive.google.com/file/d/17wud_t8fTiFNZBx5Hn02OoVFxCJR-yGR/view)
 
 ### ⚠️ Warnings
 - **Experimental project** – Do not use for real-world trading decisions.  
