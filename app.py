@@ -5,6 +5,7 @@ from trading_floor import names, lastnames, short_model_names
 import plotly.express as px
 from accounts import Account
 from database import read_log
+from gradio.themes import Default
 
 mapper = {
     "trace": Color.WHITE,
@@ -80,7 +81,7 @@ class Trader:
         emoji = "⬆" if pnl >= 0 else "⬇"
         return f"<div style='text-align: center;background-color:{color};'><span style='font-size:32px'>${portfolio_value:,.0f}</span><span style='font-size:24px'>&nbsp;&nbsp;&nbsp;{emoji}&nbsp;${pnl:,.0f}</span></div>"
 
-    def get_logs(self, previous=None) -> str:
+    def get_logs(self, previous=None) -> str | dict:
         logs = read_log(self.name, last_n=13)
         response = ""
         for log in logs:
@@ -176,7 +177,7 @@ def create_ui():
     trader_views = [TraderView(trader) for trader in traders]
 
     with gr.Blocks(
-        title="Traders", css=css, js=js, theme=gr.themes.Default(primary_hue="sky"), fill_width=True
+        title="Traders", css=css, js=js, theme=Default(primary_hue="sky"), fill_width=True
     ) as ui:
         with gr.Row():
             for trader_view in trader_views:
