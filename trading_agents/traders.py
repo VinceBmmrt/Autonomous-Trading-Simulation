@@ -1,13 +1,13 @@
 from contextlib import AsyncExitStack
-from accounts_client import read_accounts_resource, read_strategy_resource
-from tracers import make_trace_id
+from mcp_clients.accounts_client import read_accounts_resource, read_strategy_resource
+from services.tracers import make_trace_id
 from agents import Agent, Tool, Runner, OpenAIChatCompletionsModel, trace
 from openai import AsyncOpenAI
 from dotenv import load_dotenv
 import os
 import json
 from agents.mcp import MCPServerStdio
-from templates import (
+from config.templates import (
     researcher_instructions,
     trader_instructions,
     trade_message,
@@ -21,11 +21,6 @@ from typing import TypedDict, List, Dict
 
 
 load_dotenv(override=True)
-
-# class MCPServerStdioParamsDict(TypedDict):
-#     command: str
-#     args: List[str]
-#     env: Dict[str, str]
 
 
 deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")

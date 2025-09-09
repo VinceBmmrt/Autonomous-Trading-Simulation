@@ -1,5 +1,12 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__))) 
 from mcp.server.fastmcp import FastMCP
-from accounts import Account
+from models.accounts import Account
+
+
+
+
 
 mcp = FastMCP("accounts_server")
 
