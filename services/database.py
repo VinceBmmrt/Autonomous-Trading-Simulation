@@ -1,3 +1,4 @@
+import os
 import sqlite3
 import json
 from datetime import datetime
@@ -5,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-DB = "accounts.db"
+DB = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "memory", "accounts.db"))
 
 
 with sqlite3.connect(DB) as conn:

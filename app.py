@@ -3,8 +3,8 @@ from util import css, js, Color
 import pandas as pd
 from trading_floor import names, lastnames, short_model_names
 import plotly.express as px
-from accounts import Account
-from database import read_log
+from models.accounts import Account
+from services.database import read_log
 from gradio.themes import Default
 
 mapper = {

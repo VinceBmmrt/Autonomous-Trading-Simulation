@@ -1,5 +1,5 @@
 from datetime import datetime
-from market import is_paid_polygon, is_realtime_polygon
+from services.market import is_paid_polygon, is_realtime_polygon
 
 if is_realtime_polygon:
     note = "You have access to realtime market data tools; use your get_last_trade tool for the latest trade price. You can also use tools for share information, trends and technical indicators and fundamentals."

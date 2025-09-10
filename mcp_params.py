@@ -1,6 +1,8 @@
 import os
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 from dotenv import load_dotenv
-from market import is_paid_polygon, is_realtime_polygon
+from services.market import is_paid_polygon, is_realtime_polygon
 
 load_dotenv(override=True)
 
@@ -22,8 +24,8 @@ else:
 # The full set of MCP servers for the trader: Accounts, Push Notification and the Market
 
 trader_mcp_server_params = [
-    {"command": "uv", "args": ["run", "accounts_server.py"]},
-    {"command": "uv", "args": ["run", "push_server.py"]},
+    {"command": "uv", "args": ["run", "mcp_servers/accounts_server.py"]},
+    {"command": "uv", "args": ["run", "mcp_servers/push_server.py"]},
     market_mcp,
 ]
 
