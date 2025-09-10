@@ -15,9 +15,8 @@ from config.templates import (
     research_tool,
 )
 from mcp_params import trader_mcp_server_params, researcher_mcp_server_params
-import logging
 from contextlib import AsyncExitStack
-from typing import TypedDict, List, Dict
+
 
 
 load_dotenv(override=True)
