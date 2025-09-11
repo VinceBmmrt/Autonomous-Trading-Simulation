@@ -1,3 +1,6 @@
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from mcp.server.fastmcp import FastMCP
 from models.accounts import Account
 
